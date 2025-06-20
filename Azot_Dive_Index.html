@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Azot Dalış Merkezi – Hesap Kitaplar</title>
+
+  <!-- Google Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    /* ==== Variables ==== */
+    :root {
+      --clr-primary-light:  #CAF0F8;
+      --clr-primary:        #00A8E8;
+      --clr-primary-dark:   #0077B6;
+      --clr-accent:         #2E8B57;
+      --clr-text:           #004d00;
+      --clr-card-bg:        rgba(255, 255, 255, 0.15);
+      --clr-btn-text:       var(--clr-text);
+      --radius:             1rem;
+      --spacing:            1.25rem;
+      --shadow-soft:        0 8px 32px rgba(0,0,0,0.1);
+      --transition:         0.3s ease;
+      --font:               'Poppins', sans-serif;
+    }
+
+    /* ==== Reset & Base ==== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: linear-gradient(135deg, rgba(202,240,248,0.6), rgba(0,119,182,0.6)),
+                  url('https://www.whiteclouds.com/wp-content/uploads/2024/12/Top-10-Largest-Marine-Mammals-main-1024x585.jpg')
+                    center center / cover no-repeat fixed;
+      color: var(--clr-text);
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--spacing);
+      position: relative;
+    }
+
+    /* ==== Glassmorphic Container ==== */
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      background: var(--clr-card-bg);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: saturate(180%) blur(20px);
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    header h1 {
+      font-size: 2.75rem;
+      font-weight: 700;
+      color: var(--clr-text);
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+    }
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.8;
+      margin-top: 0.25rem;
+      color: var(--clr-text);
+    }
+
+    /* ==== Form Styles ==== */
+    form {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+      gap: var(--spacing);
+      margin-bottom: 2rem;
+    }
+    .field label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--clr-text);
+    }
+    .field input, .field select {
+      width: 100%;
+      padding: 0.85rem;
+      border: none;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.25);
+      color: var(--clr-text);
+      backdrop-filter: blur(5px);
+      font-size: 1rem;
+      box-shadow: inset 0 4px 8px rgba(0,0,0,0.2);
+      transition: background var(--transition), transform var(--transition);
+    }
+    .field input::placeholder {
+      color: rgba(0,77,0,0.6);
+    }
+    .field input:focus, .field select:focus {
+      outline: none;
+      background: rgba(255,255,255,0.4);
+      transform: translateY(-2px);
+    }
+
+    .actions {
+      grid-column: 1 / -1;
+      display: flex;
+      gap: var(--spacing);
+    }
+    .btn {
+      flex: 1;
+      padding: 0.85rem;
+      border: none;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--clr-primary), var(--clr-accent));
+      color: var(--clr-btn-text);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+    .btn:not(:disabled):hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    .btn--danger {
+      background: #D32F2F;
+      color: var(--clr-btn-text);
+    }
+
+    /* ==== Sections ==== */
+    section {
+      margin-bottom: 2rem;
+    }
+    h2 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+      color: var(--clr-text);
+    }
+    h2::before {
+      content: '';
+      position: absolute;
+      left: -1.5rem; top: 50%;
+      transform: translateY(-50%);
+      width: 4px; height: 100%;
+      background: var(--clr-accent);
+      border-radius: 2px;
+    }
+
+    /* ==== Entry List ==== */
+    .entries-list {
+      list-style: none;
+      display: grid;
+      gap: 1rem;
+    }
+    .entries-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      background: rgba(255,255,255,0.2);
+      border-radius: var(--radius);
+      backdrop-filter: blur(5px);
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.2);
+      font-weight: 500;
+      color: var(--clr-text);
+    }
+    .entries-total {
+      text-align: right;
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      color: var(--clr-text);
+    }
+
+    /* ==== Diver Cards ==== */
+    .divers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+      gap: var(--spacing);
+    }
+    .diver-card {
+      background: rgba(255,255,255,0.2);
+      border-radius: var(--radius);
+      padding: var(--spacing);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: saturate(180%) blur(15px);
+      transition: transform var(--transition), box-shadow var(--transition);
+      color: var(--clr-text);
+    }
+    .diver-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+    .diver-card__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--spacing);
+    }
+    .diver-info {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .diver-card__icon {
+      font-size: 1.5rem;
+      color: var(--clr-accent);
+    }
+    .diver-card__name {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--clr-text);
+    }
+    .diver-card__date {
+      font-size: 0.9rem;
+      color: var(--clr-text);
+    }
+    .diver-list {
+      list-style: none;
+      margin-bottom: var(--spacing);
+    }
+    .diver-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px dashed rgba(0,77,0,0.3);
+      color: var(--clr-text);
+    }
+    .diver-total {
+      text-align: right;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--clr-text);
+    }
+
+    /* ==== Bubbles Animation ==== */
+    @keyframes rise {
+      to { transform: translateY(-120vh) scale(1.5); opacity: 0; }
+    }
+    .bubble {
+      position: absolute;
+      bottom: -50px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      animation: rise var(--duration) linear infinite;
+    }
+
+    /* ==== Responsive for Mobile ==== */
+    @media (max-width: 600px) {
+      header h1 { font-size: 2rem; }
+      header p  { font-size: 1rem; }
+      .container { padding: 1rem; }
+      form { grid-template-columns: 1fr; }
+      .actions { flex-direction: column; }
+      .btn { font-size: 0.9rem; padding: 0.75rem; }
+      .entries-list li,
+      .diver-card { padding: 0.75rem 1rem; }
+      .divers-grid { grid-template-columns: 1fr; }
+      .bubble { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Animated Bubbles -->
+  <script>
+    const isMobile = window.innerWidth <= 600;
+    const BUBBLE_COUNT = isMobile ? 12 : 25;
+    for (let i = 0; i < BUBBLE_COUNT; i++) {
+      const bubble = document.createElement('div');
+      bubble.classList.add('bubble');
+      const size = Math.random() * 40 + 10;
+      bubble.style.width = `${size}px`;
+      bubble.style.height = `${size}px`;
+      bubble.style.left = `${Math.random() * 100}%`;
+      bubble.style.animationDuration = `${Math.random() * 10 + 5}s`;
+      bubble.style.animationDelay = `-${Math.random() * 10}s`;
+      document.body.appendChild(bubble);
+    }
+  </script>
+
+  <div class="container">
+    <header>
+      <h1><i class="fa-solid fa-person-diving"></i> Azot Dalış Merkezi</h1>
+      <p>Hesap Kitaplar</p>
+    </header>
+
+    <main>
+      <form id="diveForm" autocomplete="off">
+        <div class="field">
+          <label for="diverName">Dalgıç Adı Soyadı</label>
+          <input type="text" id="diverName" maxlength="40" required placeholder="Ad Soyad" />
+        </div>
+        <div class="field">
+          <label for="diveDate">Tarih</label>
+          <input type="date" id="diveDate" required />
+        </div>
+        <div class="field">
+          <label for="diveType">Dalış Türü</label>
+          <select id="diveType" required>
+            <option value="" disabled selected>Seçiniz…</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="quantity">Adet</label>
+          <input type="number" id="quantity" min="1" value="1" required />
+        </div>
+        <div class="actions">
+          <button type="submit" class="btn">Ekle</button>
+          <button type="button" id="clearAll" class="btn btn--danger">Temizle</button>
+          <button type="button" id="completeLog" class="btn" disabled>Kaydı Tamamla</button>
+        </div>
+      </form>
+
+      <section>
+        <h2>Girişler</h2>
+        <ul id="entryList" class="entries-list"></ul>
+        <div id="total" class="entries-total">Toplam: ₺0.00</div>
+      </section>
+
+      <section>
+        <h2>Kayıtlı Dalgıçlar</h2>
+        <div id="diversPanel" class="divers-grid"></div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const DIVE_TYPES = {
+      Gx1: { label: 'Broveli Tek Dalışı',           price: 400 },
+      Gx2: { label: 'Broveli Çift Dalışı',          price: 600 },
+      Gxg: { label: 'Grup Dalışı (Kişi Başı)',      price: 300 },
+      Dx1: { label: 'Deneme Dalışı',                price: 600 },
+      Ex1: { label: 'Bireysel Eğitim Dalışı',       price: 600 },
+      Ex2: { label: 'Grup Eğitim Dalışı (Kişi Başı)',price: 400 },
+    };
+
+    const tln = n => `₺${n.toFixed(2)}`;
+    const fmt = d => {
+      const [y,m,day] = d.split('-');
+      return `${day}/${m}/${y.slice(-2)}`;
+    };
+
+    const nameEl      = document.getElementById('diverName');
+    const dateEl      = document.getElementById('diveDate');
+    const typeEl      = document.getElementById('diveType');
+    const qtyEl       = document.getElementById('quantity');
+    const entryList   = document.getElementById('entryList');
+    const totalEl     = document.getElementById('total');
+    const diversPanel = document.getElementById('diversPanel');
+    const addBtn      = document.querySelector('form button[type="submit"]');
+    const clearBtn    = document.getElementById('clearAll');
+    const finishBtn   = document.getElementById('completeLog');
+
+    let entries = [];
+    let divers  = [];
+
+    // Populate dropdown
+    Object.entries(DIVE_TYPES).forEach(([code, {label, price}]) => {
+      const opt = document.createElement('option');
+      opt.value = code;
+      opt.textContent = `${label} – ${tln(price)}`;
+      typeEl.append(opt);
+    });
+
+    function updateFinishBtn() {
+      finishBtn.disabled = !(nameEl.value.trim() && dateEl.value && entries.length);
+    }
+    nameEl.addEventListener('input', updateFinishBtn);
+    dateEl.addEventListener('change', updateFinishBtn);
+
+    function renderEntries() {
+      entryList.innerHTML = entries.map(e => {
+        const d = DIVE_TYPES[e.code];
+        return `<li><span>${d.label} x ${e.qty}</span><span>${tln(d.price * e.qty)}</span></li>`;
+      }).join('');
+      const sum = entries.reduce((acc,e) => acc + DIVE_TYPES[e.code].price * e.qty, 0);
+      totalEl.textContent = `Toplam: ${tln(sum)}`;
+    }
+
+    function renderDivers() {
+      diversPanel.innerHTML = divers.map(dv => `
+        <div class="diver-card">
+          <div class="diver-card__header">
+            <div class="diver-info">
+              <i class="fa-solid fa-person-diving diver-card__icon"></i>
+              <span class="diver-card__name">${dv.name}</span>
+            </div>
+            <span class="diver-card__date">📅 ${fmt(dv.date)}</span>
+          </div>
+          <ul class="diver-list">
+            ${dv.entries.map(e => {
+              const dd = DIVE_TYPES[e.code];
+              return `<li><span>${dd.label} x ${e.qty}</span><span>${tln(dd.price * e.qty)}</span></li>`;
+            }).join('')}
+          </ul>
+          <div class="diver-total">Toplam: ${tln(dv.total)}</div>
+        </div>
+      `).join('');
+    }
+
+    addBtn.addEventListener('click', e => {
+      e.preventDefault();
+      if (!typeEl.value || qtyEl.value < 1) return;
+      entries.push({ code: typeEl.value, qty: +qtyEl.value });
+      renderEntries();
+      updateFinishBtn();
+      typeEl.selectedIndex = 0;
+      qtyEl.value = 1;
+    });
+
+    clearBtn.addEventListener('click', () => {
+      if (!entries.length) return;
+      if (confirm('Tüm dalışları silmek istiyor musunuz?')) {
+        entries = [];
+        renderEntries();
+        updateFinishBtn();
+      }
+    });
+
+    finishBtn.addEventListener('click', () => {
+      divers.push({
+        name:  nameEl.value.trim(),
+        date:  dateEl.value,
+        entries: [...entries],
+        total: entries.reduce((acc,e) => acc + DIVE_TYPES[e.code].price * e.qty, 0)
+      });
+      entries = [];
+      renderEntries();
+      renderDivers();
+      nameEl.value = '';
+      dateEl.value = '';
+      typeEl.selectedIndex = 0;
+      qtyEl.value = 1;
+      updateFinishBtn();
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    });
+
+    // Initial render
+    renderEntries();
+    renderDivers();
+    updateFinishBtn();
+  </script>
+</body>
+</html>
