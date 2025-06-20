@@ -258,6 +258,68 @@
       .entries-list li,
       .diver-card { padding: 0.75rem 1rem; }
     }
+
+    /* ————————————————————/
+       Mobile Override Styles
+    /* ————————————————————/
+
+    /* Medium-small screens (up to ~768px) */
+    @media (max-width: 768px) {
+      /* Narrow the container padding for smaller viewports */
+      .container {
+        padding: 1rem;
+        max-width: 100%;
+      }
+
+      /* Stack entry items vertically to avoid cramped rows */
+      .entries-list li,
+      .diver-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .entries-list li span:last-child,
+      .diver-list li span:last-child {
+        margin-top: 0.5rem;
+      }
+
+      /* Make the grid single-column earlier */
+      .divers-grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    /* Small phones (up to ~480px) */
+    @media (max-width: 480px) {
+      /* Disable the heavy fixed background (performance & readability) */
+      body {
+        background-attachment: scroll;
+      }
+
+      /* Fluid typography on very small screens */
+      header h1 {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+      }
+      header p {
+        font-size: clamp(0.9rem, 4vw, 1.1rem);
+      }
+
+      /* Ensure inputs & buttons remain large enough for touch */
+      .field input,
+      .field select,
+      .btn {
+        font-size: 1rem;
+        padding: 0.85rem;
+      }
+
+      /* Stack action buttons full-width */
+      .actions {
+        flex-direction: column;
+      }
+      .actions .btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
   </style>
 </head>
 <body>
