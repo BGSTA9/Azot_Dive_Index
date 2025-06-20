@@ -335,6 +335,12 @@
         <h2>Kayıtlı Dalgıçlar</h2>
         <div id="diversPanel" class="divers-grid"></div>
       </section>
+
+      <!-- Yeni Genel Toplam Paneli -->
+      <section>
+        <h2>Genel Toplam</h2>
+        <div id="overallTotal" class="entries-total">Genel Toplam: ₺0.00</div>
+      </section>
     </main>
   </div>
 
@@ -361,6 +367,7 @@
     const entryList   = document.getElementById('entryList');
     const totalEl     = document.getElementById('total');
     const diversPanel = document.getElementById('diversPanel');
+    const overallEl   = document.getElementById('overallTotal');
     const addBtn      = document.querySelector('form button[type="submit"]');
     const clearBtn    = document.getElementById('clearAll');
     const finishBtn   = document.getElementById('completeLog');
@@ -412,6 +419,11 @@
       `).join('');
     }
 
+    function renderOverallTotal() {
+      const grand = divers.reduce((acc, dv) => acc + dv.total, 0);
+      overallEl.textContent = `Genel Toplam: ${tln(grand)}`;
+    }
+
     addBtn.addEventListener('click', e => {
       e.preventDefault();
       if (!typeEl.value || qtyEl.value < 1) return;
@@ -441,6 +453,7 @@
       entries = [];
       renderEntries();
       renderDivers();
+      renderOverallTotal();
       nameEl.value = '';
       dateEl.value = '';
       typeEl.selectedIndex = 0;
@@ -452,6 +465,7 @@
     // Initial render
     renderEntries();
     renderDivers();
+    renderOverallTotal();
     updateFinishBtn();
   </script>
 </body>
