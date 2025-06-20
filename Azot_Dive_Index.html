@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Created by SÜHEYL SANATİ -->
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
@@ -38,8 +39,8 @@
       overflow-x: hidden;
       min-height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
       padding: var(--spacing);
       position: relative;
     }
@@ -53,6 +54,7 @@
       padding: 2rem;
       box-shadow: var(--shadow-soft);
       backdrop-filter: saturate(180%) blur(20px);
+      margin-bottom: 2rem;
     }
 
     header {
@@ -69,7 +71,6 @@
       font-size: 1.2rem;
       opacity: 0.8;
       margin-top: 0.25rem;
-      color: var(--clr-text);
     }
 
     /* ==== Form Styles ==== */
@@ -84,29 +85,27 @@
       margin-bottom: 0.5rem;
       font-weight: 600;
       font-size: 0.95rem;
-      color: var(--clr-text);
     }
-    .field input, .field select {
+    .field input,
+    .field select {
       width: 100%;
       padding: 0.85rem;
       border: none;
       border-radius: var(--radius);
       background: rgba(255,255,255,0.25);
-      color: var(--clr-text);
       backdrop-filter: blur(5px);
       font-size: 1rem;
+      color: var(--clr-text);
       box-shadow: inset 0 4px 8px rgba(0,0,0,0.2);
       transition: background var(--transition), transform var(--transition);
     }
-    .field input::placeholder {
-      color: rgba(0,77,0,0.6);
-    }
-    .field input:focus, .field select:focus {
+    .field input::placeholder { color: rgba(0,77,0,0.6); }
+    .field input:focus,
+    .field select:focus {
       outline: none;
       background: rgba(255,255,255,0.4);
       transform: translateY(-2px);
     }
-
     .actions {
       grid-column: 1 / -1;
       display: flex;
@@ -134,21 +133,20 @@
       transform: translateY(-3px);
       box-shadow: 0 8px 24px rgba(0,0,0,0.4);
     }
-    .btn--danger {
-      background: #D32F2F;
-      color: var(--clr-btn-text);
+    .btn--danger { background: #D32F2F; }
+    .btn--small {
+      padding: 0.4rem 0.6rem;
+      font-size: 0.85rem;
+      border-radius: 0.5rem;
     }
 
     /* ==== Sections ==== */
-    section {
-      margin-bottom: 2rem;
-    }
+    section { margin-bottom: 2rem; }
     h2 {
       font-size: 1.6rem;
       margin-bottom: 1rem;
       position: relative;
       display: inline-block;
-      color: var(--clr-text);
     }
     h2::before {
       content: '';
@@ -175,20 +173,18 @@
       backdrop-filter: blur(5px);
       box-shadow: inset 0 2px 6px rgba(0,0,0,0.2);
       font-weight: 500;
-      color: var(--clr-text);
     }
     .entries-total {
       text-align: right;
       font-size: 1.15rem;
       font-weight: 600;
       margin-top: 0.5rem;
-      color: var(--clr-text);
     }
 
     /* ==== Diver Cards ==== */
     .divers-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: var(--spacing);
     }
     .diver-card {
@@ -198,7 +194,6 @@
       box-shadow: var(--shadow-soft);
       backdrop-filter: saturate(180%) blur(15px);
       transition: transform var(--transition), box-shadow var(--transition);
-      color: var(--clr-text);
     }
     .diver-card:hover {
       transform: translateY(-6px);
@@ -222,11 +217,18 @@
     .diver-card__name {
       font-size: 1.125rem;
       font-weight: 700;
-      color: var(--clr-text);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .diver-card__actions {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
     }
     .diver-card__date {
       font-size: 0.9rem;
-      color: var(--clr-text);
+      margin-left: 0.5rem;
     }
     .diver-list {
       list-style: none;
@@ -237,29 +239,16 @@
       justify-content: space-between;
       padding: 0.5rem 0;
       border-bottom: 1px dashed rgba(0,77,0,0.3);
-      color: var(--clr-text);
     }
     .diver-total {
       text-align: right;
       font-size: 1.1rem;
       font-weight: 600;
-      color: var(--clr-text);
     }
 
-    /* ==== Bubbles Animation ==== */
-    @keyframes rise {
-      to { transform: translateY(-120vh) scale(1.5); opacity: 0; }
-    }
-    .bubble {
-      position: absolute;
-      bottom: -50px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 50%;
-      animation: rise var(--duration) linear infinite;
-    }
-
-    /* ==== Responsive for Mobile ==== */
+    /* ==== Responsive ==== */
     @media (max-width: 600px) {
+      .divers-grid { grid-template-columns: 1fr; }
       header h1 { font-size: 2rem; }
       header p  { font-size: 1rem; }
       .container { padding: 1rem; }
@@ -268,30 +257,10 @@
       .btn { font-size: 0.9rem; padding: 0.75rem; }
       .entries-list li,
       .diver-card { padding: 0.75rem 1rem; }
-      .divers-grid { grid-template-columns: 1fr; }
-      .bubble { display: none; }
     }
   </style>
 </head>
 <body>
-
-  <!-- Animated Bubbles -->
-  <script>
-    const isMobile = window.innerWidth <= 600;
-    const BUBBLE_COUNT = isMobile ? 12 : 25;
-    for (let i = 0; i < BUBBLE_COUNT; i++) {
-      const bubble = document.createElement('div');
-      bubble.classList.add('bubble');
-      const size = Math.random() * 40 + 10;
-      bubble.style.width = `${size}px`;
-      bubble.style.height = `${size}px`;
-      bubble.style.left = `${Math.random() * 100}%`;
-      bubble.style.animationDuration = `${Math.random() * 10 + 5}s`;
-      bubble.style.animationDelay = `-${Math.random() * 10}s`;
-      document.body.appendChild(bubble);
-    }
-  </script>
-
   <div class="container">
     <header>
       <h1><i class="fa-solid fa-person-diving"></i> Azot Dalış Merkezi</h1>
@@ -336,7 +305,6 @@
         <div id="diversPanel" class="divers-grid"></div>
       </section>
 
-      <!-- Yeni Genel Toplam Paneli -->
       <section>
         <h2>Genel Toplam</h2>
         <div id="overallTotal" class="entries-total">Genel Toplam: ₺0.00</div>
@@ -344,14 +312,19 @@
     </main>
   </div>
 
+  <!-- Visible creator credit -->
+  <footer style="text-align:center; font-size:0.9rem; color:var(--clr-text); margin-bottom:1rem;">
+    Created by SÜHEYL SANATİ
+  </footer>
+
   <script>
     const DIVE_TYPES = {
+      Dx1: { label: 'Deneme Dalışı',                price: 600 },
       Gx1: { label: 'Bröveli Tek Dalışı',           price: 400 },
       Gx2: { label: 'Bröveli Çift Dalışı',          price: 600 },
-      Gxg: { label: 'Bröveli Grup Dalışı (Kişi Başı)',      price: 300 },
-      Dx1: { label: 'Deneme Dalışı',                price: 600 },
+      Gxg: { label: 'Bröveli Grup Dalışı (Kişi Başı)', price: 300 },
       Ex1: { label: 'Bireysel Eğitim Dalışı',       price: 600 },
-      Ex2: { label: 'Grup Eğitim Dalışı (Kişi Başı)',price: 400 },
+      Ex2: { label: 'Grup Eğitim Dalışı (Kişi Başı)', price: 400 },
     };
 
     const tln = n => `₺${n.toFixed(2)}`;
@@ -399,14 +372,24 @@
     }
 
     function renderDivers() {
-      diversPanel.innerHTML = divers.map(dv => `
+      diversPanel.innerHTML = divers.map((dv,i) => `
         <div class="diver-card">
           <div class="diver-card__header">
             <div class="diver-info">
               <i class="fa-solid fa-person-diving diver-card__icon"></i>
-              <span class="diver-card__name">${dv.name}</span>
+              <span class="diver-card__name"> 
+                🤿 ${dv.name}
+              </span>
             </div>
-            <span class="diver-card__date">📅 ${fmt(dv.date)}</span>
+            <div class="diver-card__actions">
+              <button type="button" class="btn btn--small edit-diver" data-index="${i}">
+                <i class="fa-solid fa-pen"></i>
+              </button>
+              <button type="button" class="btn btn--small delete-diver" data-index="${i}">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+              <span class="diver-card__date"> 📅 ${fmt(dv.date)}</span>
+            </div>
           </div>
           <ul class="diver-list">
             ${dv.entries.map(e => {
@@ -417,11 +400,40 @@
           <div class="diver-total">Toplam: ${tln(dv.total)}</div>
         </div>
       `).join('');
+
+      document.querySelectorAll('.edit-diver').forEach(btn =>
+        btn.addEventListener('click', handleEdit)
+      );
+      document.querySelectorAll('.delete-diver').forEach(btn =>
+        btn.addEventListener('click', handleDelete)
+      );
     }
 
     function renderOverallTotal() {
       const grand = divers.reduce((acc, dv) => acc + dv.total, 0);
       overallEl.textContent = `Genel Toplam: ${tln(grand)}`;
+    }
+
+    function handleEdit(e) {
+      const idx = +e.currentTarget.dataset.index;
+      const dv  = divers[idx];
+      divers.splice(idx, 1);
+      nameEl.value   = dv.name;
+      dateEl.value   = dv.date;
+      entries         = dv.entries.map(x => ({ code: x.code, qty: x.qty }));
+      renderEntries();
+      renderDivers();
+      renderOverallTotal();
+      updateFinishBtn();
+    }
+
+    function handleDelete(e) {
+      const idx = +e.currentTarget.dataset.index;
+      if (confirm('Bu kaydı silmek istediğinize emin misiniz?')) {
+        divers.splice(idx, 1);
+        renderDivers();
+        renderOverallTotal();
+      }
     }
 
     addBtn.addEventListener('click', e => {
@@ -431,7 +443,7 @@
       renderEntries();
       updateFinishBtn();
       typeEl.selectedIndex = 0;
-      qtyEl.value = 1;
+      qtyEl.value         = 1;
     });
 
     clearBtn.addEventListener('click', () => {
@@ -445,19 +457,19 @@
 
     finishBtn.addEventListener('click', () => {
       divers.push({
-        name:  nameEl.value.trim(),
-        date:  dateEl.value,
+        name:    nameEl.value.trim(),
+        date:    dateEl.value,
         entries: [...entries],
-        total: entries.reduce((acc,e) => acc + DIVE_TYPES[e.code].price * e.qty, 0)
+        total:   entries.reduce((a,e) => a + DIVE_TYPES[e.code].price * e.qty, 0)
       });
-      entries = [];
+      entries            = [];
       renderEntries();
       renderDivers();
       renderOverallTotal();
-      nameEl.value = '';
-      dateEl.value = '';
+      nameEl.value       = '';
+      dateEl.value       = '';
       typeEl.selectedIndex = 0;
-      qtyEl.value = 1;
+      qtyEl.value         = 1;
       updateFinishBtn();
       window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     });
