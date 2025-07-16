@@ -1,11 +1,8 @@
-"Azot Dalış Merkezi – Hesap Kitaplar"<p align="center">
-  <img src="https://img.icons8.com/color/96/000000/diving-helmet.png" alt="diving helmet icon" width="90"/>
-</p>
-
-<h1 align="center">Azot Dalış Merkezi – Hesap Kitaplar</h1>
+<h1 align="center">Azot Dalış Merkezi</h1>
+<h3 align="center">Hesap Kitaplar</h3>
 <p align="center">
-  <b>💦 Basit ve şık bir dalış merkezi hesap takip uygulaması</b><br>
-  <i>Easy, modern dive center account tracking for everyone!</i>
+  <b> Basit ve şık bir dalış merkezi hesap takip uygulaması</b><br>
+  <i>Easy dive center account tracking for dive instructors!</i>
 </p>
 
 <p align="center">
@@ -16,7 +13,7 @@
 
 ---
 
-## 🌊 Özellikler / Features
+## 🌊 Özellikler
 
 - 👤 **Dalgıç ekle:** İsim, tarih, dalış türü ve adet ile kolay kayıt
 - 📋 **Kayıtları gör:** Girilen dalışlar ve toplam tutarı anında gör
@@ -27,15 +24,12 @@
 
 ---
 
-## 🚀 Nasıl Kullanılır? / How to Use
+## 🚀 Nasıl Kullanılır?
 
-1. **Projeyi indir veya kopyala**  
-   Download or clone the project.
+1. **Bağlantiye tıkla : https://bgsta9.github.io/Azot_Dive_Index/azot.html**  
+   Click on the link
 
-2. **index.html dosyasını aç**  
-   Just open `index.html` in your browser.
-
-3. **Dalgıç ve dalış kayıtlarını gir**  
+2. **Dalgıç ve dalış kayıtlarını gir**  
    - Dalgıç adı, tarih ve dalış türünü seç
    - Adet gir ve "Ekle"ye tıkla
    - "Kaydı Tamamla" ile dalgıcı kaydet
@@ -44,17 +38,7 @@
    - Tüm dalgıçları ve toplamları gör
    - Düzenle veya sil butonlarını kullanabilirsin
 
----
-
-## ✨ Ekran Görüntüsü / Screenshot
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/0000000/demo-screenshot.png" width="80%" alt="Azot Dalış Merkezi ekran görüntüsü">
-</p>
-
----
-
-## ⚙️ Teknoloji / Tech Stack
+## ⚙️ Tech Stack
 
 - HTML5 & CSS3 (modern, responsive)
 - Vanilla JavaScript (no backend needed)
@@ -62,54 +46,13 @@
 
 ---
 
-## 📦 Kurulum Gereksinimi Yok / No Installation Needed
+## 📦 Kurulum Gereksinimi Yok
 
 - Her şey tarayıcıda çalışır, ekstra yazılım gerekmez!
 
----
+> Created by **SÜHEYL SANATİ**  
+> Inspired by __Azot Dalış Merkezi__
 
-## 🙌 Katkı ve Teşekkür / Contributing & Thanks
-
-> Her türlü öneri ve katkı için teşekkürler!  
-> Made with ❤️ by **SÜHEYL SANATİ**  
-> Inspired by Azot Dalış Merkezi
-
---- is a simple web page for tracking and calculating diving activities and payments for divers at Azot Diving Center.
-
-Features
-	•	Add divers’ names and dive details easily
-	•	Choose dive type and quantity
-	•	See a list of entries with calculated totals in Turkish Lira (₺)
-	•	View and manage a list of registered divers
-	•	Edit or delete any diver’s entry
-	•	Responsive and modern design, works well on phones and computers
-
-How to Use
-	1.	Open the Webpage:
-Open the index.html file in your browser.
-	2.	Add a Dive Record:
-	•	Enter the diver’s name.
-	•	Select the date.
-	•	Choose the dive type from the list.
-	•	Enter the quantity (number of dives).
-	•	Click “Ekle” to add to the list.
-	3.	Review Your Entries:
-	•	All added dives will show under Girişler.
-	•	You can clear all entries with the “Temizle” button.
-	4.	Save the Diver’s Record:
-	•	When finished adding dives for a diver, click “Kaydı Tamamla”.
-	•	The diver will appear in the Kayıtlı Dalgıçlar section.
-	•	You can edit or delete divers at any time.
-	5.	Check Totals:
-	•	The bottom shows the total amount for each diver and a general total for everyone.
-
-Tech
-	•	Only HTML, CSS, and JavaScript.
-	•	No backend or database needed — everything runs in your browser.
-
-Credits
-
-Made by SÜHEYL SANATİ
-Inspired by Azot Dalış Merkezi
+__This is a simple web page for tracking and calculating diving activities and payments for divers at Azot Diving Center.__
 
 <img width="1680" height="963" alt="image" src="https://github.com/user-attachments/assets/94e3c63c-9485-4746-a7e0-57449e6ec6b3" />
