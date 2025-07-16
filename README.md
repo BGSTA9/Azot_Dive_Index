@@ -51,7 +51,7 @@
 - Her şey tarayıcıda çalışır, ekstra yazılım gerekmez!
 
 > Created by **SÜHEYL SANATİ**  
-> Inspired by __Azot Dalış Merkezi__
+> Inspired by __SÜHEYL SANATİ :)__
 
 __This is a simple web page for tracking and calculating diving activities and payments for divers at Azot Diving Center.__
 
