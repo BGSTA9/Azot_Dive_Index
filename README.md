@@ -1,4 +1,4 @@
-<h1 align="center">Azot Dalış Merkezi</h1>
+<h1 align="center">Azot Dalış Merkezi [INDEX] </h1>
 <h3 align="center">Hesap Kitaplar</h3>
 <p align="center">
   <b> Basit ve şık bir dalış merkezi hesap takip uygulaması</b><br>
