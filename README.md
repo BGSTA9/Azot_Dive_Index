@@ -26,7 +26,7 @@
 
 ## 🚀 Nasıl Kullanılır?
 
-1. **Bağlantiye tıkla : **  
+1. **Bağlantiye tıkla : https://bgsta9.github.io/HTML_Indexs/azot.html**  
    Click on the link
 
 2. **Dalgıç ve dalış kayıtlarını gir**  
